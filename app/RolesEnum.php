@@ -2,13 +2,9 @@
 
 namespace App;
 
-class RolesEnum
+enum RolesEnum:string
 {
-    /**
-     * Create a new class instance.
-     */
-    public function __construct()
-    {
-        //
-    }
+    case Administrator = 'Admin';
+    case User = 'User';
+    case Vendor = 'Vendor';
 }
