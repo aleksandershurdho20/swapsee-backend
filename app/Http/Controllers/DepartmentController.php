@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Exception;
 use App\Models\Department;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -14,6 +15,19 @@ class DepartmentController extends Controller
     public function index()
     {
         //
+        
+        try {
+            $departments = Department::all();
+            return response()->json($departments);
+        }
+         catch (Exception $e) {
+            return response()->json([
+                'message' => 'An error occurred.',
+                'error' => $e->getMessage()
+            ], 500);
+        } {
+
+        }
     }
 
     /**
