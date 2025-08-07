@@ -31,6 +31,7 @@ class DepartmentController extends Controller
     public function store(Request $request)
     {
         //
+        $this->authorize('create', Department::class);
 
         $request->validate([
             'name' => 'required|string|max:255',
