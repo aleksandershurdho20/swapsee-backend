@@ -14,21 +14,19 @@ class DepartmentController extends Controller
      */
     public function index()
     {
-        //
-        
+        $this->authorize('viewAny', Department::class);
+
         try {
             $departments = Department::all();
             return response()->json($departments);
-        }
-         catch (Exception $e) {
+        } catch (Exception $e) {
             return response()->json([
                 'message' => 'An error occurred.',
                 'error' => $e->getMessage()
             ], 500);
-        } {
-
         }
     }
+    
 
     /**
      * Show the form for creating a new resource.
@@ -76,6 +74,7 @@ class DepartmentController extends Controller
     public function edit(string $id)
     {
         //
+
     }
 
     /**
@@ -84,6 +83,10 @@ class DepartmentController extends Controller
     public function update(Request $request, string $id)
     {
         //
+
+        $updatedDepartment = Department::find($id);
+
+        $updatedDepartment->save($request->all());
     }
 
     /**

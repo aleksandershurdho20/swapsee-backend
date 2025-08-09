@@ -14,7 +14,7 @@ class DepartmentPolicy
      */
     public function viewAny(User $user): bool
     {
-        return false;
+        return $user->hasExactRoles(RolesEnum::Administrator->value);
     }
 
     /**
@@ -22,7 +22,8 @@ class DepartmentPolicy
      */
     public function view(User $user, Department $department): bool
     {
-        return false;
+        return $user->hasExactRoles(RolesEnum::Administrator->value);
+
     }
 
     /**
