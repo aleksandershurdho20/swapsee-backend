@@ -86,7 +86,13 @@ class DepartmentController extends Controller
 
         $updatedDepartment = Department::find($id);
 
-        $updatedDepartment->save($request->all());
+        $updatedDepartment->update([
+            'name'=>$request->name
+        ]);
+        return response()->json([
+            'message'=>"Department updated succesfully",
+            'department'=>$updatedDepartment
+        ],200);
     }
 
     /**
@@ -95,5 +101,13 @@ class DepartmentController extends Controller
     public function destroy(string $id)
     {
         //
+        $department = Department::find($id);
+
+        $department->delete();
+        return response()->json([
+            'message'=>"Department deleted succesfully",
+            'department'=>$updatedDepartment
+        ],200);
+
     }
 }
