@@ -17,7 +17,7 @@ class DepartmentController extends Controller
         $this->authorize('viewAny', Department::class);
 
         try {
-            $departments = Department::all();
+            $departments = Department::with('categories')->get();
             return response()->json($departments);
         } catch (Exception $e) {
             return response()->json([
