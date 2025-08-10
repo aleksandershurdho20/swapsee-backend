@@ -14,7 +14,7 @@ class DepartmentController extends Controller
      */
     public function index()
     {
-        $this->authorize('viewAny', Department::class);
+    $this->authorize('viewAny', Department::class);
 
         try {
             $departments = Department::with('categories')->get();

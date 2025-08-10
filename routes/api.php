@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DepartmentController;
 
 /*
@@ -24,5 +25,6 @@ Route::post('/login',[AuthController::class, 'login']);
 Route::post('/register',[AuthController::class, 'register']);
 
 Route::resource('departments', DepartmentController::class);
+Route::resource('categories', CategoryController::class);
 
 // Route::middleware('guest')->post('/login', [AuthController::class, 'login']);
