@@ -90,7 +90,32 @@ class ProductController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+
+        try {
+            $product = Product::findOrFail($id);
+    
+            $product->update($request->all());
+    
+            return response()->json([
+                'success' => true,
+                'message' => 'Product updated successfully.',
+                'data'    => $product,
+            ], 200);
+    
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Product not found.',
+            ], 404);
+    
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Failed to update product.',
+                'error'   => app()->environment('local') ? $e->getMessage() : null,
+            ], 500);
+        }
+
     }
 
     /**
