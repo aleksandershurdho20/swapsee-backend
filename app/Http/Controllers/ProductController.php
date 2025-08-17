@@ -14,7 +14,22 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        try {
+            $products = Product::latest()->get();
+    
+            return response()->json([
+                'success' => true,
+                'message' => 'Products retrieved successfully.',
+                'data'    => $products,
+            ], 200);
+    
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Failed to retrieve products.',
+                'error'   => app()->environment('local') ? $e->getMessage() : null,
+            ], 500);
+        }
     }
 
     /**
